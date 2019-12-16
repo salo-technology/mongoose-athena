@@ -26,9 +26,6 @@
   },
   "homepage": "https://github.com/salo-creative/athena#readme",
   "jest": {
-    "setupFiles": [
-      "<rootDir>/jestSetup.js"
-    ],
     "testPathIgnorePatterns": [
       "/node_modules/"
     ],
