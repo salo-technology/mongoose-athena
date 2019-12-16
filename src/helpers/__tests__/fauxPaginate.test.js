@@ -11,10 +11,10 @@ describe('fauxPaginate', () => {
     };
     const output = fauxPaginate(input);
     expect(isArray(output.docs)).toBe(true);
-    expect(output.paginate.page).toBe(1);
-    expect(output.paginate.nextPage).toBe(2);
-    expect(output.paginate.prevPage).toBe(null);
-    expect(output.paginate.total).toBe(2);
+    expect(output.pagination.page).toBe(1);
+    expect(output.pagination.nextPage).toBe(2);
+    expect(output.pagination.prevPage).toBe(null);
+    expect(output.pagination.total).toBe(2);
   });
   
   it('should not have a nextPage if no nextPage', () => {
@@ -24,7 +24,7 @@ describe('fauxPaginate', () => {
       results: [1, 2]
     };
     const output = fauxPaginate(input);
-    expect(output.paginate.nextPage).toBe(null);
+    expect(output.pagination.nextPage).toBe(null);
   });
   
   it('should have a prevPage if not the first page', () => {
@@ -34,7 +34,7 @@ describe('fauxPaginate', () => {
       results: [1, 2]
     };
     const output = fauxPaginate(input);
-    expect(output.paginate.prevPage).toBe(1);
+    expect(output.pagination.prevPage).toBe(1);
   });
   
   it('should correctly offset results', () => {

@@ -109,11 +109,13 @@ export const fauxPaginate = ({ page, limit, results }) => {
 
   return {
     docs,
-    paginate: {
+    pagination: {
       page,
       nextPage,
       prevPage,
-      total: results.length
+      total: results.length,
+      hasNextPage: !!nextPage,
+      hasPrevPage: !!prevPage
     }
   };
 };
