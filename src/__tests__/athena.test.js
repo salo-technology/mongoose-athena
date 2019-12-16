@@ -259,6 +259,21 @@ describe('paginate', () => {
     expect(result.pagination.nextPage).toBe(null);
     expect(result.pagination.totalPages).toBe(null);
   });
+
+  it('fallsback to 1 when limit is set too high', async () => {
+    const opts = {
+      query: {
+        name: 'Does not exist'
+      },
+      limit: 1,
+      page: 1
+    };
+
+    const result = await Person.athena(opts);
+
+    expect(result.docs).toHaveLength(0);
+    expect(result.pagination).toBeDefined();
+  });
  
   it('does not call skip or limit if pagination is not set', async (done) => {
     const skipSpy = jest.fn();

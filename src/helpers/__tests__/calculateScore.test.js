@@ -4,10 +4,13 @@ describe('Calculate score', () => {
   it('should give higher scores for better matches', () => {
     const items = ['This', 'is', 'a', 'sentence'];
     const goodMatch = calculateScore({ items, term: 'This is a sentence' });
+    const closeMatch = calculateScore({ items, term: 'This is not a sentence' });
     const badMatch = calculateScore({ items, term: 'Thxs es a sxntxcx' });
     const worstMatch = calculateScore({ items, term: '1234' });
 
     expect(goodMatch).toBeGreaterThan(badMatch);
+    expect(goodMatch).toBeGreaterThan(closeMatch);
+    expect(closeMatch).toBeGreaterThan(badMatch);
     expect(goodMatch).toBeGreaterThan(worstMatch);
     expect(badMatch).toBeGreaterThan(worstMatch);
     expect(worstMatch).toBe(0);
