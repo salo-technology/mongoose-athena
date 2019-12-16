@@ -4,6 +4,7 @@ node_modules
 public
 src
 test
+__mocks__
 __tests__
 coverage
 .babelrc

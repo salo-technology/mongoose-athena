@@ -30,4 +30,22 @@ describe('Calculate score', () => {
 
     expect(bestMatch).toBeGreaterThan(goodMatch);
   });
+
+  it('should weigh some fields higher than others', () => {
+    const items = ['This', 'is', 'a', 'sentence'];
+    const heavy = calculateScore({
+      items,
+      term: 'this',
+      threshold: 1,
+      weight: 5
+    });
+    const light = calculateScore({
+      items,
+      term: 'this',
+      threshold: 1,
+      weight: 0.5
+    });
+
+    expect(heavy).toBeGreaterThan(light);
+  });
 });
