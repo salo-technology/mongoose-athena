@@ -1,0 +1,68 @@
+{
+  "name": "@salo/mongoose-athena",
+  "version": "1.0.0",
+  "description": "A Mongoose plugin for weighted search and pagination",
+  "main": "./index.js",
+  "sideEffects": false,
+  "scripts": {
+    "bundle": "rm -rf dist/ && babel --copy-files src --out-dir dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cover": "jest --coverage --maxWorkers=10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salo-creative/athena.git"
+  },
+  "keywords": [
+    "Mongoose",
+    "Relevancy",
+    "Pagination"
+  ],
+  "author": "Salo Creative",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salo-creative/athena/issues"
+  },
+  "homepage": "https://github.com/salo-creative/athena#readme",
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/jestSetup.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testEnvironment": "node",
+    "coverageReporters": [
+      "html",
+      "text"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "~7.7.5",
+    "@babel/core": "~7.7.5",
+    "@babel/node": "~7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "~7.7.5",
+    "@babel/plugin-transform-runtime": "~7.7.6",
+    "@babel/preset-env": "~7.7.6",
+    "babel-eslint": "~10.0.3",
+    "babel-plugin-lodash": "~3.3.4",
+    "eslint": "~6.7.2",
+    "eslint-config-airbnb-base": "~14.0.0",
+    "eslint-plugin-import": "~2.19.1",
+    "jest": "~24.9.0",
+    "lodash": "~4.17.15",
+    "mongodb-memory-server": "~6.0.2",
+    "mongoose": "~5.8.1"
+  },
+  "peerDependencies": {
+    "mongoose": "^5.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "~7.7.6",
+    "talisman": "~0.21.0"
+  }
+}
