@@ -78,7 +78,7 @@ MySchema.athena({
 | name       | The field name in your collection                                                                                                             | String  |         |
 | prefixOnly | Whether to only match from the start of the string or anywhere in the string e\.g\. 'ob' would match 'bob' with this off but not when it's on | Boolean | false   |
 | threshold  | Value between 0 and 1\. It will only count a score if it is greater or equal to this value                                                    | Float   | 0       |
-| minSize    | The length of the string to start matching against\. e\.g\. if minSize is 4 then the term 'bob' will not search against the field             | Int     |         |
+| minSize    | The length of the string to start matching against\. e\.g\. if minSize is 4 then the term 'bob' will not search against the field             | Int     | 2        |
 | weight     | A scaling value to multiply scores by so you can weigh certain fields higher/lower than others                                                | Int     | 1       |
 
 
