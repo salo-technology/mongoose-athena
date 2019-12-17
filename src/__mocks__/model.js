@@ -14,7 +14,7 @@ PersonSchema.plugin(Athena, {
     threshold: 0.3,
     weight: 2
   }, {
-    name: 'description',
+    name: 'biography',
     minSize: 4
   }]
 });

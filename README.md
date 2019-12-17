@@ -22,7 +22,7 @@ MySchema.plugin(athena, {
     threshold: 0.3,
     weight: 2
   }, {
-    name: 'description',
+    name: 'biography',
     minSize: 4
   }]
 });
@@ -41,7 +41,7 @@ MySchema.athena({
 });
 ```
 
-This will search `name` and `description` for the term 'athena'. If it is sorted by 'relevancy' then a `confidenceScore` will be attached to the result. The result looks like so:
+This will search `name` and `biography` for the term 'athena'. If it is sorted by 'relevancy' then a `confidenceScore` will be attached to the result. The result looks like so:
 
 ```javascript
 {
