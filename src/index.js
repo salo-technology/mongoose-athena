@@ -14,7 +14,7 @@ export default function (schema, options) {
   // eslint-disable-next-line no-param-reassign
   schema.statics.athena = async function (args = {}) {
     const {
-      query,
+      query = {},
       term,
       sort,
       select,

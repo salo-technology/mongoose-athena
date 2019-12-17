@@ -78,11 +78,14 @@ export const sortByRelevancy = async (args) => {
   const weighted = results.reduce((accum, result) => {
     const confidenceScore = fields.reduce((prev, item) => {
       const items = result[item.name] ? result[item.name].split(' ') : [];
+
+      const weight = item.name.includes('email') && term.includes('@') ? (item.weight || DEFAULT_WEIGHT) * 2 : item.weight || DEFAULT_WEIGHT;
+      
       const score = calculateScore({
         items,
         term,
         threshold: item.threshold,
-        weight: item.weight || DEFAULT_WEIGHT
+        weight
       });
       return prev + score;
     }, 0);
