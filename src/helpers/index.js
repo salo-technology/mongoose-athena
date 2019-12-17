@@ -3,7 +3,7 @@ import jaroWinkler from 'talisman/metrics/distance/jaro-winkler';
 
 const { Model } = mongoose;
 
-export const DEFAULT_THRESHOLD = 0.3; // 0..1
+export const DEFAULT_THRESHOLD = 0; // 0..1
 const DEFAULT_MIN_SIZE = 2;
 const DEFAULT_PREFIX_ONLY = false;
 const DEFAULT_WEIGHT = 1;
