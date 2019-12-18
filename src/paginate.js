@@ -47,12 +47,12 @@ export function paginate(query, opts) {
     select,
     sort,
     pagination,
-    allowDiskUse,
-    isAggregate
+    allowDiskUse
   } = options;
 
   const limit = options.limit > 0 ? Number(options.limit) : 0;
   const findOptions = options.options;
+  const isAggregate = !!query._pipeline;
 
   let offset;
   let page;

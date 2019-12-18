@@ -342,7 +342,6 @@ describe('paginate', () => {
     ]);
     const result = await Person.athena({
       query: fullNameQuery,
-      isAggregate: true,
       limit: 10,
       sort: 'relevancy',
       allowDiskUse: true
@@ -399,7 +398,6 @@ describe('paginate', () => {
     ]);
     const result = await Person.athena({
       query: fullNameQuery,
-      isAggregate: true,
       limit: 10
     });
 

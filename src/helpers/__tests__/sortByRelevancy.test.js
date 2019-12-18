@@ -104,4 +104,26 @@ describe('sortByRelevancy', () => {
 
     done();
   });
+
+  it('should accept aggregate queries', async (done) => {
+    const output = await sortByRelevancy({
+      term: 'Will',
+      fields: [{
+        name: 'first_name'
+      }],
+      sort: 'relevancy',
+      query: Person.aggregate([
+        {
+          $match: {
+            first_name: 'William'
+          }
+        }
+      ]),
+      model: Person
+    });
+
+    expect(output).toHaveLength(2);
+
+    done();
+  });
 });
