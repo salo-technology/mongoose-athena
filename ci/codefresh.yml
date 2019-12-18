@@ -33,6 +33,6 @@ steps:
     commands:
       - npm install -g npm-cli-login
       - npm-cli-login -u "${{NPM_USER}}" -p "${{NPM_PASSWORD}}" -e "${{NPM_EMAIL}}"
-      - cp -rf .npmignore package.json ./dist
+      - cp -rf .npmignore package.json README.md ./dist
       - cd ./dist
       - npm publish
