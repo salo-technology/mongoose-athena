@@ -1,6 +1,6 @@
 {
   "name": "@salo/mongoose-athena",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A Mongoose plugin for weighted search and pagination",
   "main": "./dist/index.js",
   "sideEffects": false,
@@ -8,11 +8,12 @@
     "bundle": "rm -rf dist/ && babel src --ignore \"src/__mocks__/**/*.js\",\"src/**/*.test.js\" --out-dir dist",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cover": "jest --coverage --maxWorkers=10"
+    "test:cover": "jest --coverage --maxWorkers=10",
+    "release:prep": "chmod +x ./ci/release.sh && ./ci/release.sh",
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/salo-creative/athena.git"
+    "url": "git+https://github.com/salo-creative/mongoose-athena.git"
   },
   "keywords": [
     "Mongoose",
@@ -22,9 +23,9 @@
   "author": "Salo Creative",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/salo-creative/athena/issues"
+    "url": "https://github.com/salo-creative/mongoose-athena/issues"
   },
-  "homepage": "https://github.com/salo-creative/athena#readme",
+  "homepage": "https://github.com/salo-creative/mongoose-athena#readme",
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules/"

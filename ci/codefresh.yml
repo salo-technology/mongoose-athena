@@ -1,0 +1,38 @@
+version: "1.0"
+stages:
+  - "clone"
+  - "test"
+  - "build"
+  - "publish"
+steps:
+  main_clone:
+    type: "git-clone"
+    description: "Cloning main repository..."
+    repo: "salo-creative/mongoose-athena"
+    revision: "${{CF_BRANCH}}"
+    stage: "clone"
+    git: salocreative
+  test:
+    image: node:12
+    working_directory: ${{main_clone}}
+    stage: "test"
+    commands:
+      - yarn
+      - yarn test
+  build:
+    image: node:12
+    working_directory: ${{main_clone}}
+    stage: "build"
+    commands:
+      - yarn
+      - yarn bundle
+  publish:
+    image: node:12
+    working_directory: ${{main_clone}}
+    stage: "publish"
+    commands:
+      - npm install -g npm-cli-login
+      - npm-cli-login -u "${{NPM_USER}}" -p "${{NPM_PASSWORD}}" -e "${{NPM_EMAIL}}"
+      - cp -rf .npmignore package.json ./dist
+      - cd ./dist
+      - npm publish
