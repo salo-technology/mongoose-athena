@@ -1,3 +1,16 @@
+const defaultOptions = {
+  collation: {},
+  lean: false,
+  leanWithId: true,
+  limit: 20,
+  projection: {},
+  select: '',
+  options: {},
+  pagination: true,
+  // aggregate specific
+  allowDiskUse: false
+};
+
 /**
  * @param {Object}              [query={}]
  * @param {Object}              [options={}]
@@ -18,17 +31,6 @@
  *
  * @returns {Promise}
  */
-const defaultOptions = {
-  collation: {},
-  lean: false,
-  leanWithId: true,
-  limit: 20,
-  projection: {},
-  select: '',
-  options: {},
-  pagination: true
-};
-
 export function paginate(query = {}, opts) {
   const options = {
     ...defaultOptions,
@@ -44,7 +46,9 @@ export function paginate(query = {}, opts) {
     read,
     select,
     sort,
-    pagination
+    pagination,
+    allowDiskUse,
+    isAggregate
   } = options;
 
   const limit = options.limit > 0 ? Number(options.limit) : 0;
@@ -53,8 +57,6 @@ export function paginate(query = {}, opts) {
   let offset;
   let page;
   let skip;
-
-  let docsPromise = [];
 
   if (options.offset) {
     offset = Number(options.offset);
@@ -68,52 +70,90 @@ export function paginate(query = {}, opts) {
     skip = offset;
   }
 
-  const countPromise = this.countDocuments(query).exec();
+  const constructRegularQuery = () => {
+    const countPromise = this.countDocuments(query).exec();
 
-  if (limit) {
-    const mQuery = this.find(query, projection, findOptions);
-    mQuery.select(select);
-    mQuery.sort(sort);
-    mQuery.lean(lean);
-
-    if (read && read.pref) {
-      /**
-       * Determines the MongoDB nodes from which to read.
-       * @param read.pref one of the listed preference options or aliases
-       * @param read.tags optional tags for this query
-       */
-      mQuery.read(read.pref, read.tags);
-    }
-
-    if (populate) {
-      mQuery.populate(populate);
-    }
-
-    if (pagination) {
-      mQuery.skip(skip);
-      mQuery.limit(limit);
-    }
-
-    docsPromise = mQuery.exec();
-
-    if (lean && leanWithId) {
-      docsPromise = docsPromise.then((docs) => {
-        docs.forEach((doc) => {
-          return {
-            ...doc,
-            id: String(doc._id)
-          };
+    if (limit) {
+      const mQuery = this.find(query, projection, findOptions);
+      mQuery.select(select);
+      mQuery.sort(sort);
+      mQuery.lean(lean);
+  
+      if (read && read.pref) {
+        /**
+         * Determines the MongoDB nodes from which to read.
+         * @param read.pref one of the listed preference options or aliases
+         * @param read.tags optional tags for this query
+         */
+        mQuery.read(read.pref, read.tags);
+      }
+  
+      if (populate) {
+        mQuery.populate(populate);
+      }
+  
+      if (pagination) {
+        mQuery.skip(skip);
+        mQuery.limit(limit);
+      }
+  
+      let docsPromise = mQuery.exec();
+  
+      if (lean && leanWithId) {
+        docsPromise = docsPromise.then((docs) => {
+          docs.forEach((doc) => {
+            return {
+              ...doc,
+              id: String(doc._id)
+            };
+          });
+          return docs;
         });
-        return docs;
-      });
-    }
-  }
+      }
 
-  return Promise.all([countPromise, docsPromise])
+      return [countPromise, docsPromise];
+    }
+    return [countPromise, []];
+  };
+
+  const constructAggregateQuery = () => {
+    const mQuery = this.aggregate(query._pipeline);
+    const countQuery = this.aggregate(mQuery._pipeline);
+    if (mQuery.options) {
+      mQuery.options = query.options;
+      countQuery.options = query.options;
+    }
+  
+    if (sort) {
+      mQuery.sort(sort);
+    }
+    
+    if (allowDiskUse) {
+      mQuery.allowDiskUse(true);
+      countQuery.allowDiskUse(true);
+    }
+
+    const docsPromise = mQuery
+      .skip(skip)
+      .limit(limit)
+      .exec();
+
+    const countPromise = countQuery.group({
+      _id: null,
+      count: {
+        $sum: 1
+      }
+    }).exec();
+    return [countPromise, docsPromise];
+  };
+
+  const promises = isAggregate ? constructAggregateQuery() : constructRegularQuery();
+
+  return Promise.all(promises)
     .then((values) => {
       const [count, docs] = values;
       const meta = {
-        total: count
+        total: isAggregate ? count[0].count : count
       };
 
       let result = {};
