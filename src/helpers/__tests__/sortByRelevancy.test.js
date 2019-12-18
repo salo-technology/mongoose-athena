@@ -43,7 +43,7 @@ describe('sortByRelevancy', () => {
     const output = await sortByRelevancy({
       term: 'statistician',
       fields: [{
-        name: 'name'
+        name: 'last_name'
       }, {
         name: 'biography'
       }],
@@ -53,8 +53,8 @@ describe('sortByRelevancy', () => {
     });
 
 
-    const winkler = find(output, { name: 'William Winkler' });
-    const jaro = find(output, { name: 'Matthew Jaro' });
+    const winkler = find(output, { last_name: 'Winkler' });
+    const jaro = find(output, { last_name: 'Jaro' });
 
     expect(winkler.confidenceScore).toBeGreaterThan(jaro.confidenceScore);
 
@@ -65,7 +65,7 @@ describe('sortByRelevancy', () => {
     const output = await sortByRelevancy({
       term: 'Matt',
       fields: [{
-        name: 'name'
+        name: 'first_name'
       }, {
         name: 'favourite_colour'
       }],
