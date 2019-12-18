@@ -2,6 +2,8 @@
 
 A plugin to add weighted search and pagination to your schema.
 
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/salocreative/salo-mongoose-athena%2Fpublish?branch=master&key=eyJhbGciOiJIUzI1NiJ9.NWM4NTJlMDlmM2NkZWMwOWJlMTc2ZmNj.gnWGET-KzXTLD9ekKZ6ezcjb0kdmFWF3MDvjzrzn8ok&type=cf-1)]( https%3A%2F%2Fg.codefresh.io%2Fpipelines%2Fpublish%2Fbuilds%3FrepoOwner%3Dsalo-creative%26repoName%3Dmongoose-athena%26serviceName%3Dsalo-creative%252Fmongoose-athena%26filter%3Dtrigger%3Abuild~Build%3Bbranch%3Amaster%3Bpipeline%3A5df9e0477ab3a7c8942ed3e2~publish)
+
 ## Usage
 
 Install
