@@ -50,9 +50,19 @@ export default function (schema, options) {
         term
       });
 
-      return paginate.apply(this, [searchQuery, { ...paginationOptions, page, limit }]);
+      return paginate.apply(this, [searchQuery, {
+        ...paginationOptions,
+        page,
+        limit,
+        sort
+      }]);
     }
 
-    return paginate.apply(this, [query, { ...paginationOptions, page, limit }]);
+    return paginate.apply(this, [query, {
+      ...paginationOptions,
+      page,
+      limit,
+      sort
+    }]);
   };
 }

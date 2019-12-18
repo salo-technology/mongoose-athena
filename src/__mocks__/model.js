@@ -5,7 +5,8 @@ import Athena from '../index';
 const PersonSchema = new Schema({
   first_name: String,
   last_name: String,
-  biography: String
+  biography: String,
+  email: String
 });
 
 PersonSchema.plugin(Athena, {
@@ -22,6 +23,9 @@ PersonSchema.plugin(Athena, {
   }, {
     name: 'biography',
     minSize: 4
+  }, {
+    name: 'email',
+    minSize: 8
   }]
 });
 

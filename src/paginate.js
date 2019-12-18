@@ -31,7 +31,7 @@ const defaultOptions = {
  *
  * @returns {Promise}
  */
-export function paginate(query = {}, opts) {
+export function paginate(query, opts) {
   const options = {
     ...defaultOptions,
     ...paginate.options,
@@ -119,10 +119,8 @@ export function paginate(query = {}, opts) {
   const constructAggregateQuery = () => {
     const mQuery = this.aggregate(query._pipeline);
     const countQuery = this.aggregate(mQuery._pipeline);
-    if (mQuery.options) {
-      mQuery.options = query.options;
-      countQuery.options = query.options;
-    }
+    mQuery.options = query.options;
+    countQuery.options = query.options;
   
     if (sort) {
       mQuery.sort(sort);

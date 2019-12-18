@@ -113,6 +113,10 @@ One thing to note is that the search term is not split on spaces but text on the
 
 Athena currently has 100% test coverage.
 
+## Roadmap
+
+* Make options (e.g. `weighting`, `minSize`) configurable outside of the schema definition.
+
 ## Prior art (and disclaimer)
 
 I'm not an expert in any of these fields and have very much relied on a few prior projects to reach this point. There's a very high chance there are more efficient ways to accomplish this and I welcome PRs to help this!

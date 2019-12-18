@@ -78,4 +78,30 @@ describe('sortByRelevancy', () => {
 
     done();
   });
+
+  it('should weigh email fields heavily if it detects an @', async (done) => {
+    const heavy = await sortByRelevancy({
+      term: 'bill@',
+      fields: [{
+        name: 'email'
+      }],
+      sort: 'relevancy',
+      query: {},
+      model: Person
+    });
+    const light = await sortByRelevancy({
+      term: 'bill',
+      fields: [{
+        name: 'email'
+      }],
+      sort: 'relevancy',
+      query: {},
+      model: Person
+    });
+
+    // The heavily weighted result should be roughly 2x the result without the weighting
+    expect(heavy[0].confidenceScore).toBeCloseTo(light[0].confidenceScore * 2, 0.05);
+
+    done();
+  });
 });

@@ -344,7 +344,8 @@ describe('paginate', () => {
       query: fullNameQuery,
       isAggregate: true,
       limit: 10,
-      sort: 'relevancy'
+      sort: 'relevancy',
+      allowDiskUse: true
     });
 
     expect(result.docs).toHaveLength(1);
@@ -357,5 +358,67 @@ describe('paginate', () => {
     expect(result.pagination.hasNextPage).toBe(false);
     expect(result.pagination.prevPage).toBe(null);
     expect(result.pagination.nextPage).toBe(null);
+  });
+
+  it('handles aggregate queries with minimal options', async () => {
+    const term = 'William Shakespeare';
+    // Generate the query for the first section of the search
+    const firstTerm = term.split(' ')[0];
+    const firstQuery = [
+      { first_name: { $regex: firstTerm, $options: 'i' } },
+      { last_name: { $regex: firstTerm, $options: 'i' } }
+    ].filter(i => i);
+
+    // Generate the query for the second section of the search
+    const secondQuery = [
+      { full_name: { $regex: term, $options: 'i' } },
+      term.length >= 8 ? { email_address: { $regex: term, $options: 'i' } } : null // Only lookup on email address if term is >= 8 characters
+    ].filter(i => i);
+         
+    const fullNameQuery = Person.aggregate([
+      // 1a. find all the matches for first or last name or email address not belonging to you
+      {
+        $match: {
+          $or: firstQuery
+        }
+      },
+      // 1b. Project a virtual field which is the first and last name concatenated.
+      {
+        $project: {
+          full_name: { $concat: ['$first_name', ' ', '$last_name'] },
+          email_address: '$email_address',
+          doc: '$$ROOT'
+        }
+      },
+      // 1c. Perform the search against the full name
+      {
+        $match: {
+          $or: secondQuery
+        }
+      }
+    ]);
+    const result = await Person.athena({
+      query: fullNameQuery,
+      isAggregate: true,
+      limit: 10
+    });
+
+    expect(result.docs).toHaveLength(1);
+    expect(result.pagination.total).toBe(1);
+    expect(result.pagination.limit).toBe(10);
+    expect(result.pagination.pages).toBe(1);
+    expect(result.pagination.page).toBe(1);
+    expect(result.pagination.pagingCounter).toBe(1);
+    expect(result.pagination.hasPrevPage).toBe(false);
+    expect(result.pagination.hasNextPage).toBe(false);
+    expect(result.pagination.prevPage).toBe(null);
+    expect(result.pagination.nextPage).toBe(null);
+  });
+  
+  it('should do nothing if no options are passed', async () => {
+    const result = await Person.athena();
+
+    expect(result.docs).toBeDefined();
+    expect(result.pagination.total).toBeDefined();
   });
 });
