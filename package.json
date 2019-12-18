@@ -2,7 +2,7 @@
   "name": "@salo/mongoose-athena",
   "version": "1.0.0",
   "description": "A Mongoose plugin for weighted search and pagination",
-  "main": "./dist/index.js",
+  "main": "./index.js",
   "sideEffects": false,
   "scripts": {
     "bundle": "rm -rf dist/ && babel src --ignore \"src/__mocks__/**/*.js\",\"src/**/*.test.js\" --out-dir dist",
