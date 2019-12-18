@@ -128,6 +128,7 @@ Athena currently has 100% test coverage.
 ## Roadmap
 
 * Make options (e.g. `weighting`, `minSize`) configurable outside of the schema definition.
+* Add more robust tests to ensure there aren't regressions in options going to `pagination` (e.g. `select`, `sort`, etc.).
 
 ## Prior art (and disclaimer)
 

@@ -54,6 +54,7 @@ export default function (schema, options) {
         ...paginationOptions,
         page,
         limit,
+        select,
         sort
       }]);
     }
@@ -62,6 +63,7 @@ export default function (schema, options) {
       ...paginationOptions,
       page,
       limit,
+      select,
       sort
     }]);
   };
