@@ -43,7 +43,7 @@ describe('sortByRelevancy', () => {
     const output = await sortByRelevancy({
       term: 'statistician',
       fields: [{
-        name: 'name'
+        name: 'last_name'
       }, {
         name: 'biography'
       }],
@@ -53,8 +53,8 @@ describe('sortByRelevancy', () => {
     });
 
 
-    const winkler = find(output, { name: 'William Winkler' });
-    const jaro = find(output, { name: 'Matthew Jaro' });
+    const winkler = find(output, { last_name: 'Winkler' });
+    const jaro = find(output, { last_name: 'Jaro' });
 
     expect(winkler.confidenceScore).toBeGreaterThan(jaro.confidenceScore);
 
@@ -65,7 +65,7 @@ describe('sortByRelevancy', () => {
     const output = await sortByRelevancy({
       term: 'Matt',
       fields: [{
-        name: 'name'
+        name: 'first_name'
       }, {
         name: 'favourite_colour'
       }],
@@ -75,6 +75,54 @@ describe('sortByRelevancy', () => {
     });
 
     expect(output.length).toBe(2);
+
+    done();
+  });
+
+  it('should weigh email fields heavily if it detects an @', async (done) => {
+    const heavy = await sortByRelevancy({
+      term: 'bill@',
+      fields: [{
+        name: 'email'
+      }],
+      sort: 'relevancy',
+      query: {},
+      model: Person
+    });
+    const light = await sortByRelevancy({
+      term: 'bill',
+      fields: [{
+        name: 'email'
+      }],
+      sort: 'relevancy',
+      query: {},
+      model: Person
+    });
+
+    // The heavily weighted result should be roughly 2x the result without the weighting
+    expect(heavy[0].confidenceScore).toBeCloseTo(light[0].confidenceScore * 2, 0.05);
+
+    done();
+  });
+
+  it('should accept aggregate queries', async (done) => {
+    const output = await sortByRelevancy({
+      term: 'Will',
+      fields: [{
+        name: 'first_name'
+      }],
+      sort: 'relevancy',
+      query: Person.aggregate([
+        {
+          $match: {
+            first_name: 'William'
+          }
+        }
+      ]),
+      model: Person
+    });
+
+    expect(output).toHaveLength(2);
 
     done();
   });

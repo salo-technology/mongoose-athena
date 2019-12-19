@@ -69,9 +69,13 @@ export const sortByRelevancy = async (args) => {
     term
   });
 
-  const results = await Model.find.apply(model, [search, {}, { sort }])
-    .select(select)
-    .lean();
+  const isAggregate = !!query._pipeline;
+  const results = isAggregate
+    ? await Model.aggregate.apply(model, [query._pipeline])
+      .sort(sort)
+    : await Model.find.apply(model, [search, {}, { sort }])
+      .select(select)
+      .lean();
 
   // Give each entry a confidence score to sort by
   // This is based on Jaro–Winkler distance to match similar strings

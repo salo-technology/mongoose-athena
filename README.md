@@ -103,6 +103,18 @@ The crux of it lies in the `calculateScore` method in the helpers directory. Thi
 
 One thing to note is that the search term is not split on spaces but text on the database is. So using our previous example where `term = 'Athena Rogers'` the text in the database is split into `['Athena', 'Rogers']`. Now, `Athena Rogers` doesn't directly match 'Athena' or 'Rogers' (it scores 0.93 and 0.41 respectively) but this score is accumulated (0.93+0.41) and then multiplied by the position in the string and any weighting applied to the field. We could split the search term to get direct matches and higher scores but this would considerably slow the calculation of the score down by an order of magnitude as every part of the search term would need matching to every part of the field. In my testing the current approach lends itself to speed and logical weighting.
 
+## Pagination
+
+The pagination is based on [mongoose-paginate-v2](https://github.com/aravindnc/mongoose-paginate-v2/) and [mongoose-aggregate-paginate-v2](https://github.com/aravindnc/mongoose-aggregate-paginate-v2). Athena's implementation is an amalgamation of both libraries and it transparently determines if the query is an aggregate or not.
+
+```javascript
+const aggregate = MySchema.aggregate();
+const result = await MySchema.athena({
+  query: fullNameQuery,
+  limit: 10
+});
+```
+
 ## Publishing
 
 1. Before opening a PR, run `yarn release:prep` locally to ~~add changelog and~~ increment version number on your branch
@@ -112,6 +124,11 @@ One thing to note is that the search term is not split on spaces but text on the
 ## Testing
 
 Athena currently has 100% test coverage.
+
+## Roadmap
+
+* Make options (e.g. `weighting`, `minSize`) configurable outside of the schema definition.
+* Add more robust tests to ensure there aren't regressions in options going to `pagination` (e.g. `select`, `sort`, etc.).
 
 ## Prior art (and disclaimer)
 

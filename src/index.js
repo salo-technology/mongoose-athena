@@ -14,12 +14,12 @@ export default function (schema, options) {
   // eslint-disable-next-line no-param-reassign
   schema.statics.athena = async function (args = {}) {
     const {
-      query = {},
-      term,
-      sort,
-      select,
-      page = 1,
       limit,
+      page = 1,
+      query = {},
+      select,
+      sort,
+      term,
       ...paginationOptions
     } = args;
 
@@ -28,12 +28,12 @@ export default function (schema, options) {
     // Only perform relevancy if needed
     if (searchTerm && sort === 'relevancy') {
       const results = await sortByRelevancy({
-        term: searchTerm,
         fields: options.fields,
+        model: this,
+        query,
         select,
         sort,
-        query,
-        model: this
+        term: searchTerm
       });
 
       return fauxPaginate({
@@ -50,9 +50,21 @@ export default function (schema, options) {
         term
       });
 
-      return paginate.apply(this, [searchQuery, { ...paginationOptions, page, limit }]);
+      return paginate.apply(this, [searchQuery, {
+        ...paginationOptions,
+        page,
+        limit,
+        select,
+        sort
+      }]);
     }
 
-    return paginate.apply(this, [query, { ...paginationOptions, page, limit }]);
+    return paginate.apply(this, [query, {
+      ...paginationOptions,
+      page,
+      limit,
+      select,
+      sort
+    }]);
   };
 }

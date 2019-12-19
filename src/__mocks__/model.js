@@ -3,19 +3,29 @@ import mongoose, { Schema } from 'mongoose';
 import Athena from '../index';
 
 const PersonSchema = new Schema({
-  name: String,
-  biography: String
+  first_name: String,
+  last_name: String,
+  biography: String,
+  email: String
 });
 
 PersonSchema.plugin(Athena, {
   fields: [{
-    name: 'name',
+    name: 'first_name',
+    prefixOnly: true,
+    threshold: 0.3,
+    weight: 2
+  }, {
+    name: 'last_name',
     prefixOnly: true,
     threshold: 0.3,
     weight: 2
   }, {
     name: 'biography',
     minSize: 4
+  }, {
+    name: 'email',
+    minSize: 8
   }]
 });
 
