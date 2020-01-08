@@ -74,7 +74,7 @@ describe('sortByRelevancy', () => {
       model: Person
     });
 
-    expect(output.length).toBe(2);
+    expect(output).toHaveLength(2);
 
     done();
   });
@@ -123,6 +123,25 @@ describe('sortByRelevancy', () => {
     });
 
     expect(output).toHaveLength(2);
+
+    done();
+  });
+ 
+  it('should not call the database if term is less than any minSize', async (done) => {
+    const output = await sortByRelevancy({
+      term: 'M',
+      fields: [{
+        name: 'first_name'
+      }],
+      sort: 'relevancy',
+      query: {},
+      model: Person
+    });
+
+    const spy = jest.spyOn(Person, 'find');
+
+    expect(output).toHaveLength(0);
+    expect(spy).not.toHaveBeenCalled();
 
     done();
   });
