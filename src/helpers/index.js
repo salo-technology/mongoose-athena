@@ -28,27 +28,27 @@ export const calculateScore = ({
 };
 
 export const generateSearchQuery = ({ query, fields, term }) => {
+  const orQuery = fields.reduce((accum, field) => {
+    if (term.length < (field.minSize || DEFAULT_MIN_SIZE)) {
+      // term is too small for the field's minSize
+      return accum;
+    }
+
+    return [
+      ...accum,
+      {
+        [field.name]: {
+          $regex: (field.prefixOnly || DEFAULT_PREFIX_ONLY) ? new RegExp(`^${ term }`) : term,
+          $options: 'mi'
+        }
+      }
+    ];
+  }, []);
+
   return {
     $and: [
       query,
-      {
-        $or: fields.reduce((accum, field) => {
-          if (term.length < (field.minSize || DEFAULT_MIN_SIZE)) {
-            // term is too small for the field's minSize
-            return accum;
-          }
-
-          return [
-            ...accum,
-            {
-              [field.name]: {
-                $regex: (field.prefixOnly || DEFAULT_PREFIX_ONLY) ? new RegExp(`^${ term }`) : term,
-                $options: 'mi'
-              }
-            }
-          ];
-        }, [])
-      }
+      { ...orQuery.length ? { $or: orQuery } : null }
     ]
   };
 };
@@ -68,6 +68,17 @@ export const sortByRelevancy = async (args) => {
     fields,
     term
   });
+
+  // Do not hit database if term is lower than any field's minSize.
+  
+  // Find the lowest field size
+  const lowestFieldSize = fields.reduce((accum, field) => (
+    Math.min(accum, field.minSize || DEFAULT_MIN_SIZE)
+  ), DEFAULT_MIN_SIZE);
+
+  if (term.length < lowestFieldSize) {
+    return [];
+  }
 
   const isAggregate = !!query._pipeline;
   const results = isAggregate

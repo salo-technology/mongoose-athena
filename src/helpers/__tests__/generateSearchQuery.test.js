@@ -11,7 +11,7 @@ describe('Generate search query', () => {
     const output = generateSearchQuery(input);
 
     expect(output.$and).toBeDefined();
-    expect(output.$and.length).toBe(2);
+    expect(output.$and).toHaveLength(2);
   });
   
   it('should not include fields where term is lower than minSize', () => {
@@ -25,8 +25,9 @@ describe('Generate search query', () => {
 
     const output = generateSearchQuery(input);
 
-    expect(output.$and.length).toBe(2);
-    expect(output.$and[1].$or.length).toBe(0);
+    expect(output.$and).toHaveLength(2);
+    expect(output.$and[0]).toEqual({});
+    expect(output.$and[1]).toEqual({});
   });
   
   it('should include fields where term is greater than or equal to minSize', () => {
@@ -41,7 +42,7 @@ describe('Generate search query', () => {
     const output = generateSearchQuery(input);
 
     expect(output.$and).toBeDefined();
-    expect(output.$and[1].$or.length).toBe(1);
+    expect(output.$and[1].$or).toHaveLength(1);
   });
 
   it('should default to minSize of 2 if not set', () => {
@@ -56,7 +57,7 @@ describe('Generate search query', () => {
     const output = generateSearchQuery(input);
 
     expect(output.$and).toBeDefined();
-    expect(output.$and[1].$or.length).toBe(1);
+    expect(output.$and[1].$or).toHaveLength(1);
   });
 
   it('should change the regex term if prefixOnly is set', () => {
@@ -74,7 +75,7 @@ describe('Generate search query', () => {
     const testField = output.$and[1].$or[0].test;
     const regex = new RegExp(testField.$regex, testField.$options);
 
-    expect('ab'.match(regex).length).toBe(1);
+    expect('ab'.match(regex)).toHaveLength(1);
     expect('bab'.match(regex)).toBe(null);
   });
 
@@ -92,7 +93,7 @@ describe('Generate search query', () => {
     const testField = output.$and[1].$or[0].test;
     const regex = new RegExp(testField.$regex, testField.$options);
 
-    expect('ab'.match(regex).length).toBe(1);
-    expect('bab'.match(regex).length).toBe(1);
+    expect('ab'.match(regex)).toHaveLength(1);
+    expect('bab'.match(regex)).toHaveLength(1);
   });
 });
