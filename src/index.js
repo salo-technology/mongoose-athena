@@ -26,7 +26,7 @@ export default function (schema, options) {
     const searchTerm = term?.trim().toLowerCase();
 
     // Only perform relevancy if needed
-    if (searchTerm && sort === 'relevancy') {
+    if (sort === 'relevancy') {
       const results = await sortByRelevancy({
         fields: options.fields,
         model: this,

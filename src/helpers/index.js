@@ -29,7 +29,7 @@ export const calculateScore = ({
 
 export const generateSearchQuery = ({ query, fields, term }) => {
   const orQuery = fields.reduce((accum, field) => {
-    if (term.length < (field.minSize || DEFAULT_MIN_SIZE)) {
+    if (!term || term.length < (field.minSize || DEFAULT_MIN_SIZE)) {
       // term is too small for the field's minSize
       return accum;
     }
@@ -76,7 +76,7 @@ export const sortByRelevancy = async (args) => {
     Math.min(accum, field.minSize || DEFAULT_MIN_SIZE)
   ), DEFAULT_MIN_SIZE);
 
-  if (term.length < lowestFieldSize) {
+  if (!term || term.length < lowestFieldSize) {
     return [];
   }
 

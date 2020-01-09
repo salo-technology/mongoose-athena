@@ -343,7 +343,7 @@ describe('paginate', () => {
     const result = await Person.athena({
       query: fullNameQuery,
       limit: 10,
-      sort: 'relevancy',
+      sort: '-created_at',
       allowDiskUse: true
     });
 

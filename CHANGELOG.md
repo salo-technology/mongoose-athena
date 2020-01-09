@@ -1,4 +1,8 @@
 # Changelog
+## 1.3.0 (9/1/2020)
+
+### Major changes
+- Made it so blank searches return an empty array
 
 ## 1.2.0 (8/1/2020)
 
