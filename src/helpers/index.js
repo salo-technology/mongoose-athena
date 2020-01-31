@@ -120,8 +120,8 @@ export const sortByRelevancy = async (args) => {
 };
 
 export const fauxPaginate = ({ page, limit, results }) => {
-  const offset = (page - 1) * limit;
-  const docs = results.slice(offset, limit + 1);
+  const offset = ((page - 1) * limit) || 0;
+  const docs = results.slice(offset, limit + offset);
   const nextPage = page * limit < results.length ? page + 1 : null;
   const prevPage = page === 1 ? null : page - 1;
 
