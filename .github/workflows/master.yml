@@ -21,8 +21,7 @@ jobs:
       - run: yarn bundle
       - run: npm install -g npm-cli-login
       - run: npm-cli-login -u "${{ secrets.NPM_USER }}" -p "${{ secrets.NPM_PASSWORD }}" -e "${{ secrets.NPM_EMAIL }}"
-      - run: cp -rf .npmignore package.json ./dist
-      - run: cd ./dist
+      - run: cp -rf ./dist/* ./
       - run: npm publish
       
       - name: Notify
