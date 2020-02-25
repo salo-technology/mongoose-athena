@@ -9,7 +9,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage --maxWorkers=10",
-    "release:prep": "chmod +x ./ci/release.sh && ./ci/release.sh"
+    "release": "chmod +x ./ci/release.sh && ./ci/release.sh"
   },
   "repository": {
     "type": "git",

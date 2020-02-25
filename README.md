@@ -1,5 +1,8 @@
 # mongoose-athena
 
+![Publish](https://github.com/salo-creative/mongoose-athena/workflows/Publish/badge.svg)
+![Development](https://github.com/salo-creative/mongoose-athena/workflows/Development/badge.svg)
+
 A plugin to add weighted search and pagination to your schema.
 
 [![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/salocreative/salo-mongoose-athena%2Fpublish?branch=master&key=eyJhbGciOiJIUzI1NiJ9.NWM4NTJlMDlmM2NkZWMwOWJlMTc2ZmNj.gnWGET-KzXTLD9ekKZ6ezcjb0kdmFWF3MDvjzrzn8ok&type=cf-1)]( https%3A%2F%2Fg.codefresh.io%2Fpipelines%2Fpublish%2Fbuilds%3FrepoOwner%3Dsalo-creative%26repoName%3Dmongoose-athena%26serviceName%3Dsalo-creative%252Fmongoose-athena%26filter%3Dtrigger%3Abuild~Build%3Bbranch%3Amaster%3Bpipeline%3A5df9e0477ab3a7c8942ed3e2~publish)
@@ -117,9 +120,10 @@ const result = await MySchema.athena({
 
 ## Publishing
 
-1. Before opening a PR, run `yarn release:prep` locally to ~~add changelog and~~ increment version number on your branch
+1. Create a feature branch from master
 2. Open a PR from your feature back to master
-3. When the development pipeline completes, hit merge and the publish pipeline will release your changes
+3. When you are ready to release the library checkout master and pull down the latest code.
+4. run `yarn release` locally to add changelog and increment version number and then push directly to master to trigger publish action
 
 ## Testing
 
