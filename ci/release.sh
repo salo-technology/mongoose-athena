@@ -22,7 +22,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
   git add -A
   git commit -m "$message"
   git tag -a $V -m "$message"
-  git push --tags
+  git push origin master --tags
 
   echo "==== ending git logic ===="
 fi

@@ -1,0 +1,29 @@
+name: Development
+
+on: 
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - run: yarn
+      - run: yarn test
+      - run: yarn bundle
+      
+      - name: Notify
+        uses: rtCamp/action-slack-notify@v2.0.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: Salo Creative
+          SLACK_ICON: https://res.cloudinary.com/salo-cms-dev/image/upload/v1578149536/salo-admin/projects/synj7hxqobscnaun2yah.png
+          SLACK_MESSAGE: ':white_check_mark: @salo/mongoose-athena tests passed'
