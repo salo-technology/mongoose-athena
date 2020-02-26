@@ -23,7 +23,12 @@ jobs:
       - run: npm-cli-login -u "${{ secrets.NPM_USER }}" -p "${{ secrets.NPM_PASSWORD }}" -e "${{ secrets.NPM_EMAIL }}"
       - run: cp -rf ./dist/* ./
       - run: npm publish
-      
+
+  notify:
+    needs: publish
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Notify
         uses: rtCamp/action-slack-notify@v2.0.0
         env:

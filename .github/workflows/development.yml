@@ -20,6 +20,11 @@ jobs:
       - run: yarn test
       - run: yarn bundle
       
+  notify:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Notify
         uses: rtCamp/action-slack-notify@v2.0.0
         env:
