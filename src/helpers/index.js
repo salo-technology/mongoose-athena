@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import jaroWinkler from 'talisman/metrics/distance/jaro-winkler';
+import jaroWinkler from 'talisman/metrics/jaro-winkler';
 
 const { Model } = mongoose;
 
