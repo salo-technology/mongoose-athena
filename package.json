@@ -40,27 +40,27 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "~7.7.5",
-    "@babel/core": "~7.7.5",
-    "@babel/node": "~7.7.4",
-    "@babel/plugin-proposal-optional-chaining": "~7.7.5",
-    "@babel/plugin-transform-runtime": "~7.7.6",
-    "@babel/preset-env": "~7.7.6",
-    "babel-eslint": "~10.0.3",
+    "@babel/cli": "~7.8.4",
+    "@babel/core": "~7.9.0",
+    "@babel/node": "~7.8.7",
+    "@babel/plugin-proposal-optional-chaining": "~7.9.0",
+    "@babel/plugin-transform-runtime": "~7.9.0",
+    "@babel/preset-env": "~7.9.5",
+    "babel-eslint": "~10.1.0",
     "babel-plugin-lodash": "~3.3.4",
-    "eslint": "~6.7.2",
-    "eslint-config-airbnb-base": "~14.0.0",
-    "eslint-plugin-import": "~2.19.1",
-    "jest": "~24.9.0",
+    "eslint": "~6.8.0",
+    "eslint-config-airbnb-base": "~14.1.0",
+    "eslint-plugin-import": "~2.20.2",
+    "jest": "~25.4.0",
     "lodash": "~4.17.15",
-    "mongodb-memory-server": "~6.0.2",
-    "mongoose": "~5.8.1"
+    "mongodb-memory-server": "~6.5.2",
+    "mongoose": "~5.9.10"
   },
   "peerDependencies": {
     "mongoose": "^5.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "~7.7.6",
-    "talisman": "~0.21.0"
+    "@babel/runtime": "~7.9.2",
+    "talisman": "~1.1.1"
   }
 }

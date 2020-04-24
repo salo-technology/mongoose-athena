@@ -1,4 +1,7 @@
 # Changelog
+## 1.3.1 (23/4/2020)
+- Updated dependencies
+
 ## 1.3.0 (9/1/2020)
 
 ### Major changes
