@@ -2824,10 +2824,10 @@ html-encoding-sniffer@^1.0.2:
   dependencies:
     whatwg-encoding "^1.0.1"
 
-html-entities@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
-  integrity sha1-DfKTUfByEWNRXfueVUPl9u7VFi8=
+html-entities@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.3.1.tgz#fb9a1a4b5b14c5daba82d3e34c6ae4fe701a0e44"
+  integrity sha512-rhE/4Z3hIhzHAUKbW8jVcCyuT5oJCXXqhN/6mXXVCpzTmvJnoH2HL/bt3EZ6p55jbFJBeAe1ZNpL5BugLujxNA==
 
 html-escaper@^2.0.0:
   version "2.0.2"
@@ -3931,10 +3931,10 @@ mkdirp@^1.0.3:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-mnemonist@^0.34.0:
-  version "0.34.0"
-  resolved "https://registry.yarnpkg.com/mnemonist/-/mnemonist-0.34.0.tgz#94244ba4f8922ee25863d4624b3c6cccfd81b126"
-  integrity sha512-eKQxmumFOJhd7ea/u8zVvj7gA2tD6QFkuDfUIvoT/VIq+yR1VzXpp0tM8QFgeSRig5brIN/3NUE72/wvvyc9ug==
+mnemonist@^0.36.1:
+  version "0.36.1"
+  resolved "https://registry.yarnpkg.com/mnemonist/-/mnemonist-0.36.1.tgz#9d8aa39e7db23ccb3735861d1081fc3faea4f180"
+  integrity sha512-PXrJJ5MRu++lfoZN1z/DjQhlMrrNgmHKb+DVFqGy/lCn9hMTZwXKC6aaKKwtqd6lwwak3HOonqo3D1fhQzfwaQ==
   dependencies:
     obliterator "^1.6.1"
 
@@ -4324,10 +4324,10 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
-pandemonium@^1.0.2:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/pandemonium/-/pandemonium-1.4.1.tgz#61f4fb0df843a9282b5f7bce7a467ed05857961d"
-  integrity sha512-KhwY9xv8tZGQE8L7FfzaTHrLH+JnarUsDlsa8mqfisjtU3J00P362IL52Ei/EhDp025yBDzPuES/zMdWvvAR5g==
+pandemonium@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/pandemonium/-/pandemonium-1.5.0.tgz#93f35af555de1420022b341e730215c51c725be3"
+  integrity sha512-9PU9fy93rJhZHLMjX+4M1RwZPEYl6g7DdWKGmGNhkgBZR5+tOBVExNZc00kzdEGMxbaAvWdQy9MqGAScGwYlcA==
 
 parent-module@^1.0.0:
   version "1.0.1"
@@ -5293,16 +5293,16 @@ table@^5.2.3:
     string-width "^3.0.0"
 
 talisman@~1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/talisman/-/talisman-1.1.1.tgz#b5f2f4e21976697f7c2b1f386f3e0a9dfb4d3293"
-  integrity sha512-huMFHdjI5Q/yiusME4rw9tIa9gITxwQfhjEzzAQ3BzkbJF/9CQ1pXiFJ2OtBcmTnQAEtgSV1ah5VbN6JO5gt7A==
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/talisman/-/talisman-1.1.2.tgz#ea6107e5d8d006ed77501e58ee85ec32968daf1f"
+  integrity sha512-CqGgJ04k757yLeoHRaBj8QvAGLeW/ukMKfbUEy9BxMRHM1peYDoYg6k8dVFFzkW4+5s+h+GLWm3oNL3lYlz4Lw==
   dependencies:
-    html-entities "^1.2.0"
+    html-entities "^1.3.1"
     lodash "^4.17.15"
     long "^4.0.0"
-    mnemonist "^0.34.0"
+    mnemonist "^0.36.1"
     obliterator "^1.6.1"
-    pandemonium "^1.0.2"
+    pandemonium "^1.5.0"
 
 tar-stream@^2.1.1:
   version "2.1.2"
