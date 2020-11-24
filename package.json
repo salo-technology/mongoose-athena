@@ -8,8 +8,7 @@
     "bundle": "rm -rf dist/ && babel src --ignore \"src/__mocks__/**/*.js\",\"src/**/*.test.js\" --out-dir dist",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cover": "jest --coverage --maxWorkers=10",
-    "release": "chmod +x ./ci/release.sh && ./ci/release.sh"
+    "test:cover": "jest --coverage --maxWorkers=10"
   },
   "repository": {
     "type": "git",
