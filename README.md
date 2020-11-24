@@ -121,9 +121,10 @@ const result = await MySchema.athena({
 ## Publishing
 
 1. Create a feature branch from master
-2. Open a PR from your feature back to master
-3. When you are ready to release the library checkout master and pull down the latest code.
-4. run `yarn release` locally to add changelog and increment version number and then push directly to master to trigger publish action
+2. Open a PR from your feature back to master. This can be repeated multiple times between release
+3. For each change update the draft release on github to maintain an accurate changelog 
+4. When you are ready to release the library checkout master increment the package.json and push back to origin
+5. On github publish the draft release, ensuring the tag matches the package.json version number. When you publish the tag the CI should kick in and automatically publish for you
 
 ## Testing
 

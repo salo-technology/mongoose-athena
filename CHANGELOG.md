@@ -1,4 +1,6 @@
 # Changelog
+
+# N.B. CHANGELOG NOW ON GIT REPO RELEASES
 ## 1.4.0 (24/4/2020)
 - Updated dependencies
 
