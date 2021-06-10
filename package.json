@@ -59,7 +59,7 @@
     "mongoose": "^5.12.3"
   },
   "dependencies": {
-    "@babel/runtime": "~7.13.10",
+    "@babel/runtime": "~7.14.5",
     "talisman": "~1.1.4"
   }
 }
