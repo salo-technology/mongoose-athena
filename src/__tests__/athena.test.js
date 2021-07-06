@@ -16,15 +16,15 @@ let mongoServer;
 
 jest.setTimeout(120000);
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   mongoServer = new MongoMemoryServer();
   await mongoServer.start();
   const mongoUri = mongoServer.getUri();
   await mongoose.connect(mongoUri, options, (err) => {
-    if (err) done(err);
+    if (err) throw new Error(err);
   });
 
-  generateData().then(() => done());
+  await generateData();
 });
 
 afterAll(async () => {
@@ -38,7 +38,7 @@ describe('paginate', () => {
     expect(typeof promise.then).toBe('function');
   });
 
-  it('throws an error if the promise is rejected', async (done) => {
+  it('throws an error if the promise is rejected', async () => {
     jest.spyOn(Promise, 'all')
       .mockImplementationOnce(() => {
         return {
@@ -58,10 +58,9 @@ describe('paginate', () => {
       error = e;
     }
     expect(error).toBe('fail countDocuments');
-    done();
   });
   
-  it('should call populate', async (done) => {
+  it('should call populate', async () => {
     const spy = jest.fn();
     jest.spyOn(Person, 'find')
       .mockImplementationOnce(() => {
@@ -88,10 +87,9 @@ describe('paginate', () => {
     });
    
     expect(spy).toHaveBeenCalled();
-    done();
   });
 
-  it('should call populate', async (done) => {
+  it('should call populate', async () => {
     const spy = jest.fn();
     jest.spyOn(Person, 'find')
       .mockImplementationOnce(() => {
@@ -115,7 +113,6 @@ describe('paginate', () => {
     });
    
     expect(spy).toHaveBeenCalled();
-    done();
   });
 
   it('sorts by relevancy', () => {
@@ -270,7 +267,7 @@ describe('paginate', () => {
     expect(result.pagination).toBeDefined();
   });
  
-  it('does not call skip or limit if pagination is not set', async (done) => {
+  it('does not call skip or limit if pagination is not set', async () => {
     const skipSpy = jest.fn();
     const limitSpy = jest.fn();
     jest.spyOn(Person, 'find')
@@ -295,7 +292,6 @@ describe('paginate', () => {
    
     expect(skipSpy).not.toHaveBeenCalled();
     expect(limitSpy).not.toHaveBeenCalled();
-    done();
   });
 
   it('handles aggregate queries', async () => {
