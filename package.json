@@ -1,6 +1,6 @@
 {
   "name": "@salo/mongoose-athena",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "A Mongoose plugin for weighted search and pagination",
   "main": "./index.js",
   "sideEffects": false,
