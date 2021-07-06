@@ -16,20 +16,15 @@ let mongoServer;
 
 jest.setTimeout(120000);
 
-beforeAll((done) => {
+beforeAll(async (done) => {
   mongoServer = new MongoMemoryServer();
-  mongoServer
-    .getConnectionString()
-    .then((mongoUri) => {
-      return mongoose.connect(mongoUri, options, (err) => {
-        if (err) done(err);
-      });
-    })
-    .then(() => {
-      generateData().then(() => {
-        done();
-      });
-    });
+  await mongoServer.start();
+  const mongoUri = mongoServer.getUri();
+  await mongoose.connect(mongoUri, options, (err) => {
+    if (err) done(err);
+  });
+
+  generateData().then(() => done());
 });
 
 afterAll(async () => {
