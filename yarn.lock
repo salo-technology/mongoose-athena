@@ -4047,10 +4047,10 @@ mnemonist@^0.38.1:
   dependencies:
     obliterator "^1.6.1"
 
-mongodb-memory-server-core@7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/mongodb-memory-server-core/-/mongodb-memory-server-core-7.1.0.tgz#1b147ab12b18bb3b9426a2ac38782aeb8e9566e1"
-  integrity sha512-tSnffPiC1HrHMW+OA9b6g14MFPq/fXfnHOQPPlPtcjK+dM7tAWhzw1eOSKz0aye4xMiS3+ko37xdmpC/B7R4cA==
+mongodb-memory-server-core@7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/mongodb-memory-server-core/-/mongodb-memory-server-core-7.2.0.tgz#c7c403b729b861df3b4989224bb9cbbbcec5e618"
+  integrity sha512-GCdCaVIVipxHW5PrhhVXZIVgfa4Rht+95RwRdSFXp9MwZaGqAU+aUlcRJkE02RSdITvI6dHmXG3X+Uz7yB1ChA==
   dependencies:
     "@types/tmp" "^0.2.0"
     async-mutex "^0.3.0"
@@ -4070,12 +4070,12 @@ mongodb-memory-server-core@7.1.0:
     uuid "^8.3.1"
     yauzl "^2.10.0"
 
-mongodb-memory-server@~7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/mongodb-memory-server/-/mongodb-memory-server-7.1.0.tgz#f85a189275cd84fe9d2cf669250207ea9e4c06da"
-  integrity sha512-czAM0HmvHqki4/TOqGhi0MCeM+PpIWxKwcPJVxZhIoQ2lyAVI4zdv8ACwGB8Nj3nrGWV1vQUd2PJmTcY0Q8WYQ==
+mongodb-memory-server@~7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/mongodb-memory-server/-/mongodb-memory-server-7.2.0.tgz#b425b0014841d1d18134de8e08e6d3c6affa13e9"
+  integrity sha512-bTVzkHwNgEQHt8pRZF8Fca96eghd/72RHn0kEsnYjf0XjY5Vvg8/PvxOEWRd4Oa15tUJ6rW5eMsQhRfb1FPCFg==
   dependencies:
-    mongodb-memory-server-core "7.1.0"
+    mongodb-memory-server-core "7.2.0"
     tslib "^2.3.0"
 
 mongodb@3.6.8:
