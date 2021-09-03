@@ -52,7 +52,7 @@
     "eslint-plugin-import": "~2.24.0",
     "jest": "~27.1.0",
     "lodash": "~4.17.21",
-    "mongodb-memory-server": "~7.3.6",
+    "mongodb-memory-server": "~7.4.0",
     "mongoose": "~5.13.2"
   },
   "peerDependencies": {
