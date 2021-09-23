@@ -5,7 +5,9 @@ const defaultOptions = {
   limit: 20,
   projection: {},
   select: '',
-  options: {},
+  options: {
+    strict: false
+  },
   pagination: true,
   // aggregate specific
   allowDiskUse: false

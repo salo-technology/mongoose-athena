@@ -84,7 +84,7 @@ export const sortByRelevancy = async (args) => {
   const results = isAggregate
     ? await Model.aggregate.apply(model, [query._pipeline])
       .sort(sort)
-    : await Model.find.apply(model, [search, {}, { sort }])
+    : await Model.find.apply(model, [search, {}, { sort, strict: false }])
       .select(select)
       .lean();
 

@@ -1,13 +1,13 @@
 {
   "name": "@salo/mongoose-athena",
-  "version": "1.5.9",
+  "version": "1.6.0",
   "description": "A Mongoose plugin for weighted search and pagination",
   "main": "./index.js",
   "sideEffects": false,
   "scripts": {
     "bundle": "rm -rf dist/ && babel src --ignore \"src/__mocks__/**/*.js\",\"src/**/*.test.js\" --out-dir dist",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --verbose",
+    "test:watch": "jest --watch --verbose",
     "test:cover": "jest --coverage --maxWorkers=10"
   },
   "repository": {
@@ -53,7 +53,7 @@
     "jest": "~27.2.0",
     "lodash": "~4.17.21",
     "mongodb-memory-server": "~7.4.0",
-    "mongoose": "~5.13.2"
+    "mongoose": "~6.0.7"
   },
   "peerDependencies": {
     "mongoose": "^5.12.3"

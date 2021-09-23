@@ -8,11 +8,7 @@ import Person from '../../__mocks__/model';
 import { sortByRelevancy } from '../index';
 
 const options = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  autoIndex: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true
+  autoIndex: true
 };
 
 let mongoServer;
@@ -52,6 +48,7 @@ describe('sortByRelevancy', () => {
     const winkler = find(output, { last_name: 'Winkler' });
     const jaro = find(output, { last_name: 'Jaro' });
 
+    expect(output).toHaveLength(2);
     expect(winkler.confidenceScore).toBeGreaterThan(jaro.confidenceScore);
   });
 

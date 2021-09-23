@@ -5,11 +5,7 @@ import generateData from '../__mocks__/data';
 import Person from '../__mocks__/model';
 
 const options = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  autoIndex: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true
+  autoIndex: true
 };
 
 let mongoServer;
