@@ -1,6 +1,6 @@
 {
   "name": "@salo/mongoose-athena",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "A Mongoose plugin for weighted search and pagination",
   "main": "./index.js",
   "sideEffects": false,
@@ -53,7 +53,7 @@
     "jest": "~27.2.0",
     "lodash": "~4.17.21",
     "mongodb-memory-server": "~7.4.0",
-    "mongoose": "~6.0.7"
+    "mongoose": "~6.0.10"
   },
   "peerDependencies": {
     "mongoose": "^5.12.3"
